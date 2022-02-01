@@ -19,7 +19,7 @@ class PaintFragment : Fragment() {
         viewBinding = FragmentPaintBinding.inflate(inflater)
         viewBinding.backButtonPaint.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragment_container_view, MenuFragment())
+                ?.replace(R.id.fragment_container_view, GuestMenuFragment())
                 ?.commit()
         }
         return viewBinding.root

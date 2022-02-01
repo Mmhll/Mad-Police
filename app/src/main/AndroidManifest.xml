@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mhl.madpolice">
+    package="com.mhl.madpolice" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MadPolice"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".menuActivity.SignedActivity"
+            android:exported="false" />
         <activity
             android:name=".menuActivity.GuestActivity"
             android:exported="false" />
@@ -20,7 +23,7 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

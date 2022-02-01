@@ -1,13 +1,11 @@
 package com.mhl.madpolice.menuActivity
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.mhl.madpolice.R
-import com.mhl.madpolice.SignInActivity
-import com.mhl.madpolice.fragments.AboutFragment
-import com.mhl.madpolice.fragments.MenuFragment
+import com.mhl.madpolice.databinding.ActivityGuestBinding
+import com.mhl.madpolice.fragments.GuestMenuFragment
 
 
 class GuestActivity : AppCompatActivity() {
@@ -17,7 +15,7 @@ class GuestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guest)
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_view, MenuFragment())
+            .replace(R.id.fragment_container_view, GuestMenuFragment())
             .commit()
     }
 }

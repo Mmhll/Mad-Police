@@ -23,7 +23,7 @@ class PhotorobotFragment : Fragment() {
 
         viewBinding.backButtonRobot.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragment_container_view, MenuFragment())
+                ?.replace(R.id.fragment_container_view, GuestMenuFragment())
                 ?.commit()
         }
 

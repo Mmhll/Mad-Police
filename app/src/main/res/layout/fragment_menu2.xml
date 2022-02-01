@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.GuestMenuFragment">
+    tools:context=".fragments.MenuFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -46,14 +46,22 @@
     </androidx.appcompat.widget.Toolbar>
 
     <Button
-        android:id="@+id/departmentsButton"
-        android:layout_width="410dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="27dp"
-        android:text="Departments"
+        android:id="@+id/casesButton"
+        android:text="Criminal cases"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <Button
+        android:id="@+id/departmentsButton"
+        android:layout_width="410dp"
+        android:layout_height="50dp"
+        android:text="Departments"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/casesButton" />
 
     <Button
         android:id="@+id/wantedButton"
@@ -61,19 +69,18 @@
         android:layout_height="50dp"
         android:text="Wanted"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/departmentsButton" />
 
     <Button
-        android:id="@+id/paintButton"
+        android:id="@+id/detectivesButton"
         android:layout_width="410dp"
         android:layout_height="50dp"
-        android:text="Paint"
+        android:text="Detectives"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/robotButton" />
+        app:layout_constraintTop_toBottomOf="@+id/wantedButton" />
 
     <Button
         android:id="@+id/robotButton"
@@ -83,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wantedButton" />
+        app:layout_constraintTop_toBottomOf="@+id/detectivesButton" />
 
     <Button
         android:id="@+id/aboutButton"
@@ -94,5 +101,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

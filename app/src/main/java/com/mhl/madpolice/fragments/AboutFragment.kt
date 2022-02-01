@@ -1,6 +1,5 @@
 package com.mhl.madpolice.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,7 +22,7 @@ class AboutFragment : Fragment() {
         viewBinding.helloText.text = "Ну привет"
         viewBinding.backButtonAbout.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragment_container_view, MenuFragment())
+                ?.replace(R.id.fragment_container_view, GuestMenuFragment())
                 ?.commit()
         }
         return viewBinding.root

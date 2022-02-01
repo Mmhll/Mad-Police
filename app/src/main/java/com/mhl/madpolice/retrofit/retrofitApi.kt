@@ -2,6 +2,7 @@ package com.mhl.madpolice.retrofit
 
 import com.mhl.madpolice.apadters.department
 import com.mhl.madpolice.apadters.Login
+import com.mhl.madpolice.apadters.LoginData
 import retrofit2.http.GET
 import retrofit2.http.Query
 
