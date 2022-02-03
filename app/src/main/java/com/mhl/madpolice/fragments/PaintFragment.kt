@@ -12,6 +12,7 @@ class PaintFragment : Fragment() {
 
     private lateinit var viewBinding : FragmentPaintBinding
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.mhl.madpolice.FragmentHelper
 import com.mhl.madpolice.R
 import com.mhl.madpolice.databinding.AboutFragmentBinding
 
@@ -20,11 +21,16 @@ class AboutFragment : Fragment() {
 
         viewBinding = AboutFragmentBinding.inflate(inflater)
         viewBinding.helloText.text = "Ну привет"
+
         viewBinding.backButtonAbout.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragment_container_view, GuestMenuFragment())
-                ?.commit()
+            if(FragmentHelper().getPrefs(requireActivity())) {
+                FragmentHelper().setFragment(requireActivity(), R.id.fragment_container_signed, MenuFragment())
+            }
+            else{
+                FragmentHelper().setFragment(requireActivity(), R.id.fragment_container_view, GuestMenuFragment())
+            }
         }
+
         return viewBinding.root
     }
 

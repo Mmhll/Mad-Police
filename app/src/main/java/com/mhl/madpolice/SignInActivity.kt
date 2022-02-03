@@ -45,9 +45,7 @@ class SignInActivity : AppCompatActivity() {
                             prefs.edit()
                                 .putString(getString(R.string.id), it.data.id)
                                 .putString(getString(R.string.token), it.data.token)
-                                .apply().let {
-                                    Log.d("SUCCESS", "NU TI PONYAL")
-                                }
+                                .apply()
                         }
                         startActivity(Intent(this@SignInActivity, SignedActivity::class.java))
                         finish()

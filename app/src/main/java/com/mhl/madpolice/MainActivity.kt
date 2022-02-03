@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import com.mhl.madpolice.menuActivity.SignedActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +16,15 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                val intent = Intent(this@MainActivity, SignInActivity::class.java)
-                startActivity(intent)
-                finish()
+                var prefs = getSharedPreferences("USER", MODE_PRIVATE)
+                if (prefs.getString(getString(R.string.id), "").equals("")) {
+                    startActivity(Intent(this@MainActivity, SignInActivity::class.java))
+                    finish()
+                }
+                else{
+                    startActivity(Intent(this@MainActivity, SignedActivity::class.java))
+                    finish()
+                }
             }
         }.start()
 

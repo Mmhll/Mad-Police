@@ -12,4 +12,5 @@
     <string name="token">TOKEN</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="description">Ryan Adams, whose new album Prisoner is out this Friday, was the latest guest on Marc Maron’s podcast “WTF.” Adams discussed encountering the Rolling Stones early in his career (and talking penny loafers with drummer Charlie Watts), his struggles with addiction in the Easy Tiger era</string>
 </resources>
