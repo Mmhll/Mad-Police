@@ -22,22 +22,24 @@ class MenuFragment : Fragment() {
 
         binding = FragmentMenu2Binding.inflate(inflater)
 
-
-
         binding.departmentsButton.setOnClickListener {
-            FragmentHelper().setFragment(requireActivity(), R.id.fragment_container_signed, DepartmentFragment())
+            FragmentHelper(requireContext()).setFragment(requireActivity(), R.id.fragment_container_signed, DepartmentFragment())
         }
 
         binding.aboutButton.setOnClickListener {
-            FragmentHelper().setFragment(requireActivity(), R.id.fragment_container_signed, AboutFragment())
+            FragmentHelper(requireContext()).setFragment(requireActivity(), R.id.fragment_container_signed, AboutFragment())
         }
 
         binding.logoutButton.setOnClickListener {
-            FragmentHelper().clearPreferences()
             startActivity(Intent(requireContext(), SignInActivity::class.java))
+            val prefs = requireContext().getSharedPreferences("USER", 0)
+            prefs.edit().clear().apply()
+            requireActivity().finish()
         }
 
-
+        binding.wantedButton.setOnClickListener {
+            FragmentHelper(requireContext()).setFragment(requireActivity(), R.id.fragment_container_signed, WantedFragment())
+        }
 
         return binding.root
     }

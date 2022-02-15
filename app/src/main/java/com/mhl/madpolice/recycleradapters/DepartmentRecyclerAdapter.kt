@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mhl.madpolice.R
-import com.mhl.madpolice.apadters.department
+import com.mhl.madpolice.apadters.Department
 
-class DepartmentRecyclerAdapter (val data : department, val context : Context): RecyclerView.Adapter<DepartmentRecyclerAdapter.MyVH>() {
+class DepartmentRecyclerAdapter (val data : Department, val context : Context): RecyclerView.Adapter<DepartmentRecyclerAdapter.MyVH>() {
 
     private lateinit var myListener : onItemClickListener
 

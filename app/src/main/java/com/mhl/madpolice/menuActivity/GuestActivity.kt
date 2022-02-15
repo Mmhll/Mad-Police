@@ -18,10 +18,10 @@ class GuestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guest)
 
-        FragmentHelper().clearPreferences()
-
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container_view, GuestMenuFragment())
             .commit()
     }
+
+
 }

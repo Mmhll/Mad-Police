@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editLogin" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/checkRemember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remember me"
@@ -69,7 +69,7 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/checkRemember" />
 
     <Button
         android:id="@+id/guestButton"

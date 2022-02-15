@@ -1,6 +1,7 @@
 package com.mhl.madpolice.fragments
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mhl.madpolice.FragmentHelper
 import com.mhl.madpolice.R
-import com.mhl.madpolice.apadters.department
+import com.mhl.madpolice.apadters.Department
 import com.mhl.madpolice.databinding.FragmentDepartmentBinding
 import com.mhl.madpolice.recycleradapters.DepartmentRecyclerAdapter
 import com.mhl.madpolice.retrofit.MyRetrofit
@@ -20,16 +21,20 @@ import retrofit2.Response
 class DepartmentFragment : Fragment() {
 
     private lateinit var viewBinding : FragmentDepartmentBinding
+    private lateinit var prefs : SharedPreferences
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewBinding = FragmentDepartmentBinding.inflate(inflater)
+        prefs = requireActivity().getSharedPreferences("USER", 0)
+
 
         var retrofit = MyRetrofit().retrofit()
         var api = retrofit.create(retrofitApi::class.java)
-        api.getDepartment().enqueue(object : Callback<department>{
-            override fun onResponse(call: Call<department>, response: Response<department>) {
+        api.getDepartment().enqueue(object : Callback<Department>{
+            override fun onResponse(call: Call<Department>, response: Response<Department>) {
                 if (response.isSuccessful){
                     response.body()!!.let {
                         var adapter = DepartmentRecyclerAdapter(it, requireContext())
@@ -37,15 +42,15 @@ class DepartmentFragment : Fragment() {
                             override fun onItemClick(position: Int) {
                                 val prefs = requireActivity().getSharedPreferences("PAGE", Context.MODE_PRIVATE)
                                 prefs.edit().putString("page", position.toString()).apply()
-                                if (!FragmentHelper().getPrefs(requireActivity())){
-                                    FragmentHelper().setFragment(
-                                            activity!!,
+                                if (prefs.getBoolean(getString(R.string.remember), false)){
+                                    FragmentHelper(requireContext()).setFragment(
+                                            requireActivity(),
                                             R.id.fragment_container_view,
                                             ShowDepartmentFragment()
                                         )
                                 }
                                 else{
-                                    FragmentHelper().setFragment(
+                                    FragmentHelper(requireContext()).setFragment(
                                             requireActivity(),
                                             R.id.fragment_container_signed,
                                             ShowDepartmentFragment()
@@ -59,21 +64,27 @@ class DepartmentFragment : Fragment() {
 
                     }
                 }
-                else{
-
-                }
             }
 
-            override fun onFailure(call: Call<department>, t: Throwable) {
+            override fun onFailure(call: Call<Department>, t: Throwable) {
             }
 
         })
 
         viewBinding.backButtonMain.setOnClickListener {
-            if (FragmentHelper().getPrefs(requireActivity()))
-                FragmentHelper().setFragment(requireActivity(), R.id.fragment_container_signed, GuestMenuFragment())
-            else{
-                FragmentHelper().setFragment(requireActivity(), R.id.fragment_container_view, GuestMenuFragment())
+            if (prefs.getBoolean(getString(R.string.remember), false)) {
+                FragmentHelper(requireContext()).setFragment(
+                    requireActivity(),
+                    R.id.fragment_container_signed,
+                    GuestMenuFragment()
+                )
+            }
+            else {
+                FragmentHelper(requireContext()).setFragment(
+                    requireActivity(),
+                    R.id.fragment_container_view,
+                    GuestMenuFragment()
+                )
             }
         }
 

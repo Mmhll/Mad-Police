@@ -1,13 +1,10 @@
 package com.mhl.madpolice
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.mhl.madpolice.apadters.Login
-import com.mhl.madpolice.apadters.LoginData
 import com.mhl.madpolice.databinding.ActivitySignInBinding
 import com.mhl.madpolice.menuActivity.GuestActivity
 import com.mhl.madpolice.menuActivity.SignedActivity
@@ -19,9 +16,6 @@ class SignInActivity : AppCompatActivity() {
 
 
     private lateinit var viewBinding : ActivitySignInBinding
-
-    private lateinit var data: LoginData
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,14 +33,25 @@ class SignInActivity : AppCompatActivity() {
             query.enqueue(object : Callback<Login>{
                 override fun onResponse(call: Call<Login>, response: Response<Login>) {
                     if (response.isSuccessful) {
-
                         val prefs = getSharedPreferences("USER", MODE_PRIVATE)
                         response.body()?.let {
-                            prefs.edit()
-                                .putString(getString(R.string.id), it.data.id)
-                                .putString(getString(R.string.token), it.data.token)
-                                .apply()
+                            if (viewBinding.checkRemember.isChecked) {
+                                prefs.edit()
+                                    .putString(getString(R.string.id), it.data.id)
+                                    .putString(getString(R.string.token), it.data.token)
+                                    .putBoolean(getString(R.string.remember), true)
+                                    .apply()
+                            }
+                            else{
+                                prefs.edit()
+                                    .putString(getString(R.string.id), it.data.id)
+                                    .putString(getString(R.string.token), it.data.token)
+                                    .putBoolean(getString(R.string.remember), false)
+                                    .apply()
+                            }
                         }
+
+
                         startActivity(Intent(this@SignInActivity, SignedActivity::class.java))
                         finish()
 
@@ -55,12 +60,9 @@ class SignInActivity : AppCompatActivity() {
                             Log.d("RESPONSE", response.message())
                         }
                     }
-
-
                 override fun onFailure(call: Call<Login>, t: Throwable) {
 
                 }
-
             })
         }
         viewBinding.guestButton.setOnClickListener {

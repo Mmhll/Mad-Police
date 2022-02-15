@@ -1,5 +1,6 @@
 package com.mhl.madpolice
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,8 +17,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                var prefs = getSharedPreferences("USER", MODE_PRIVATE)
-                if (prefs.getString(getString(R.string.id), "").equals("")) {
+                val prefs = getSharedPreferences("USER", MODE_PRIVATE)
+                if (prefs.getString(getString(R.string.id), "") == null || prefs.getString(getString(R.string.id), "").equals("")) {
                     startActivity(Intent(this@MainActivity, SignInActivity::class.java))
                     finish()
                 }
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this@MainActivity, SignedActivity::class.java))
                     finish()
                 }
+
             }
         }.start()
 
